@@ -37,7 +37,7 @@ hints.innerHTML = 'Tap/click then say a color to change the background color of 
 
 document.body.onclick = function() {
   recognition.start();
-  console.log('Ready to receive a color command.');
+  console.log('Ready to receive a command.');
 }
 
 recognition.onresult = function(event) {
@@ -64,11 +64,13 @@ recognition.onresult = function(event) {
   }
 
   diagnostic.textContent = 'Result received: ' + transcriptedText + '.';
-  foreach()
 
   //TO-DO Show alternatives
+  console.log('Received: ' + transcriptedText);
   console.log('Confidence: ' + event.results[lastIndex][0].confidence);
   console.log('alternative text: ' + alternativeText);
+
+  InterpretText(transcriptedText);
 }
 
 recognition.onspeechend = function() {
@@ -83,14 +85,37 @@ recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
 }
 
-/*
+
 var InterpretText =function (text){
     // interpret the text following the pattern [<number>] <command> [<reason>]
+    
     var foundCommand = "";
-    commands.foreach(function(element){
-
+    var numberString = "";
+    var reasonString = "";
+    commands.forEach(function(element){
+        foundCommand = text.search(element);
+        if(foundCommand != -1)
+        {
+            console.log('Found command: ' + foundCommand);
+            var numbersAndResons = text.split(element);
+            numberString = numbersAndResons[0];
+            reasonString = numbersAndResons[1];
+            console.log('number: ' + numberString);
+            console.log('reason: ' + reasonString);
         }
+    });
+
+    if(reasonString === "")
+    {
+        // say something here
+        console.log('Text ' + text + ' could not be interpreted');
+    }else if (numberString === "")
+    {
+        console.log('One defect with reason ' + reasonStrong +  ' will be declared');
+    }else
+    {
+        console.log( numberString + 'defect(s) with reason ' + reasonString +  ' will be declared');
     }
-    var numberAndReson = str.split("")
 }
-*/
+
+
