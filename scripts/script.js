@@ -25,3 +25,13 @@ document.body.onclick = function() {
 }
 */
 
+const Article = require('Article.js');
+let article = new article('myArticle','10-10-2018');
+
+/*
+console.log(johnDoe.name() + ' has a new language: ' + johnDoe.language);
+johnDoe.language = "fr";
+console.log(johnDoe.firstName + ' has a new language: ' + johnDoe.language);
+console.log(johnDoe.firstName + ' is ' + johnDoe.nationality);
+console.log(seb.firstName + ' is ' + seb.nationality);
+*/
