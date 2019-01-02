@@ -17,7 +17,7 @@ var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
 speechRecognitionList.addFromString(grammar, 1);
 recognition.grammars = speechRecognitionList;
-//recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = 'en-US';
 recognition.interimResults = false;
 recognition.maxAlternatives = 1;
@@ -26,6 +26,7 @@ var diagnostic = document.querySelector('.output');
 var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 
+var recognitionStatus = "OFF;"
 /*
 var colorHTML= '';
 colors.forEach(function(v, i, a){
@@ -33,11 +34,23 @@ colors.forEach(function(v, i, a){
   colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
 });
 */
-hints.innerHTML = 'Tap/click then say a color to change the background color of the app. Try "One Defect Label Print".';
+hints.innerHTML = 'Tap/click then Declare defect through voice command. Try "One Defect Label Print".';
 
 document.body.onclick = function() {
-  recognition.start();
-  console.log('Ready to receive a command.');
+  if(recognitionStatus == "OFF")
+  {
+    recognitionStatus = "ON";
+    recognition.start();
+    hints.innerHTML = 'Listening... Declare defect through voice command. Try "One Defect Label Print".';
+    console.log('Ready to receive a command.');
+  }else
+  {
+    recognition.stop();
+    recognitionStatus = "OFF";
+    console.log('Recognition turned off.');
+    hints.innerHTML = 'Tap/click to turn voice command on.';
+
+  }
 }
 
 recognition.onresult = function(event) {
@@ -73,9 +86,11 @@ recognition.onresult = function(event) {
   InterpretText(transcriptedText);
 }
 
+/*
 recognition.onspeechend = function() {
   recognition.stop();
 }
+*/
 
 recognition.onnsomatch = function(event) {
   diagnostic.textContent = "I didn't recognise that text.";
@@ -105,17 +120,21 @@ var InterpretText =function (text){
         }
     });
 
+    var interpretedText = "";
     if(reasonString === "")
     {
         // say something here
-        console.log('Text ' + text + ' could not be interpreted');
+        interpretedText = 'Text "' + text + '" could not be interpreted';
     }else if (numberString === "")
     {
-        console.log('One defect with reason ' + reasonStrong +  ' will be declared');
+      interpretedText = 'One defect with reason "' + reasonStrong +  '" will be declared';
     }else
     {
-        console.log( numberString + 'defect(s) with reason ' + reasonString +  ' will be declared');
+      interpretedText =  numberString + 'defect(s) with reason "' + reasonString +  '" will be declared';
     }
+    
+    diagnostic.textContent  = interpretedText;
+    console.log(interpretedText);
 }
 
 
