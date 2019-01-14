@@ -27,15 +27,10 @@ var bg = document.querySelector('html');
 var hints = document.querySelector('.hints');
 
 var recognitionStatus = "OFF;"
-/*
-var colorHTML= '';
-colors.forEach(function(v, i, a){
-  console.log(v, i);
-  colorHTML += '<span style="background-color:' + v + ';"> ' + v + ' </span>';
-});
-*/
+
 hints.innerHTML = 'Tap/click then Declare defect through voice command. Try "One Defect Label Print".';
 
+/*
 document.body.onclick = function() {
   if(recognitionStatus == "OFF")
   {
@@ -52,6 +47,7 @@ document.body.onclick = function() {
 
   }
 }
+*/
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
