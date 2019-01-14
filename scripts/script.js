@@ -1,4 +1,5 @@
-/*const DefectSrConfiguration = require('./DefectSrConfiguration');
+/*
+const DefectSrConfiguration = require('./DefectSrConfiguration');
 //var srRuntime = require('./DefectSrRuntime');
 
 
@@ -25,8 +26,8 @@ document.body.onclick = function() {
 }
 */
 
-const Article = require('Article.js');
-let article = new article('myArticle','10-10-2018');
+//const Article = require('Article.js');
+//let article = new article('myArticle','10-10-2018');
 
 /*
 console.log(johnDoe.name() + ' has a new language: ' + johnDoe.language);
