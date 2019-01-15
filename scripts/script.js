@@ -30,7 +30,7 @@ var recognitionStatus = "OFF;"
 
 hints.innerHTML = 'Tap/click then Declare defect through voice command. Try "One Defect Label Print".';
 
-/*
+
 document.body.onclick = function() {
   if(recognitionStatus == "OFF")
   {
@@ -47,7 +47,7 @@ document.body.onclick = function() {
 
   }
 }
-*/
+
 
 recognition.onresult = function(event) {
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
