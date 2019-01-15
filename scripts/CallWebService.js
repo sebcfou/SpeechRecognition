@@ -26,13 +26,13 @@ $(function() {
     {
         $('#btnCallService').click(function() {
             try{
-    
+                DataType = "json";
                 $.ajax({
                     type: 'GET',
                     url: 'http://localhost:10846/api/test',
                     //url: 'http://localhost/OeeWebService/OeeCounter.asmx/HelloWorld',
                     data: {},
-                    dataType: 'json',
+                    dataType: DataType,
                     contentType: 'text/plain',
                     //xhrFields: {withCredentials: false },
                     headers: {},
@@ -89,6 +89,10 @@ function ServiceSucceeded(result) {
 function ServiceFailed(xhr) {
     try
     {
+        if(xhr.statusText == "OK"){
+            ServiceSucceeded (xhr);
+            return;
+        }
         alert('service failed: ' + xhr.responseText);
 
         if (xhr.responseText) {
