@@ -8,27 +8,16 @@
 
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="scripts/style.css">
-    <script src="scripts/libs/jquery-3.3.1.js"></script>
-
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
 <body>
     <header></header>
-    <h1>Declare defects using Speech Recognition</h1>
-    <p class="hints"></p>
-
-    <div class="middle">
-        <input type="button" id="btnCallService" value="GetEmployeeDetail" />
-        <label id="lblData"></label>
-    </div>
-
-    <div class="bottom">
-        <p class="output"><em>...diagnostic messages</em></p>
-    </div>
     
+    <textarea id="textarea" rows=10 cols=80></textarea>
+    <button id="button" onclick="toggleStartStop()"></button>
+
     <script src="scripts/script.js"></script>
-    <script src="scripts/WebServiceCall.js"></script>
 </body>
 </html>
